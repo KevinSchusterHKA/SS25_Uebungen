@@ -3,6 +3,7 @@
 #include <vector>
 #include "Fahrt.cpp"
 #include "Mietwagen.cpp"
+#include "Insertionsort.cpp"
 
 using namespace std;
 
@@ -104,7 +105,21 @@ public:
                 }
                 case 3: // Alle Fahrten anzeigen
                 {  
+                    int sortierung;
+                    cout << "Alphabetische Ausgabe (0: absteigend, 1: aufsteigend):" << endl;
+                    cin >> sortierung;
+
                     for(Mietwagen w : fahrzeuge) {
+                        Mietwagen* fahrzeug = findeFahrzeug(w.getKennzeichen());
+                        auto fahrtenbuch = fahrzeug->getFahrtenbuch();
+                        if (sortierung = 0) {
+                            insertionSortFahrtenAbsteigend(fahrtenbuch);
+                        } else if (sortierung = 1) {
+                            insertionSortFahrtenAufsteigend(fahrtenbuch);
+                        } else {
+                            cout << "Ungültige Eingabe." << endl;
+                            break;
+                        }
                         w.alleFahrtenAnzeigen();
                         cout << "--------------------------" << endl;
                     }
@@ -142,6 +157,19 @@ public:
                 }
                 case 6: // Alle Fahrzeuge anzeigen
                 {
+                    int sortierung;
+                    cout << "Alphabetische Ausgabe (0: absteigend, 1: aufsteigend):" << endl;
+                    cin >> sortierung;
+
+                    if (sortierung = 0) {
+                        insertionSortMietwagenAbsteigend(fahrzeuge);
+                    } else if (sortierung = 1) {
+                        insertionSortMietwagenAufsteigend(fahrzeuge);
+                    } else {
+                        cout << "Ungültige Eingabe." << endl;
+                        break;
+                    }
+
                     cout << "Alle Fahrzeuge:" << endl;
                     cout << "*****************" << endl;
                     for (Mietwagen w : fahrzeuge) {
