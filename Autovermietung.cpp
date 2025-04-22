@@ -245,6 +245,9 @@ int main() {
 
     Mietwagen* w = KarlsruheCars.findeFahrzeug("KA-AS-1012");
     w->anmieten(testfahrt2);
+
+    Mietwagen* w2 = KarlsruheCars.mietwagenSuchen(1);
+    w2->anmieten(testfahrt);
   
     KarlsruheCars.dialog(); 
 
