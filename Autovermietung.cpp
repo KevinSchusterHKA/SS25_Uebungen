@@ -1,11 +1,17 @@
 // Autovermietung.cpp : Diese Datei enthält die Funktion "main". Hier beginnt und endet die Ausführung des Programms.
 //
-
+#include<vector>
 #include <iostream>
+#include <string>
+#include"Autovermietung.h"
+
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Autovermietung KarlsruheCars;
+    KarlsruheCars.dialog();
+    return 0;
 }
 
 // Programm ausführen: STRG+F5 oder "Debuggen" > Menü "Ohne Debuggen starten"
