@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <string>
 #include "Fahrt.cpp"
 #include "Mietwagen.cpp"
@@ -60,7 +61,7 @@ void insertionSortFahrtenAbsteigend(vector<Fahrt>& vec) {
             vec[j] = vec[j - 1];
             j -= 1;
         }
-        vec[j].getKunde() = key.getKunde();
+        vec[j] = key;
     }
 }
 

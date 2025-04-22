@@ -158,18 +158,22 @@ public:
                 case 6: // Alle Fahrzeuge anzeigen
                 {
                     int sortierung;
-                    cout << "Alphabetische Ausgabe (0: absteigend, 1: aufsteigend):" << endl;
+                    cout << "Alphabetische Ausgabe (0: absteigend, 1: aufsteigend, 2: Orginal-Liste):" << endl;
                     cin >> sortierung;
 
-                    if (sortierung = 0) {
+                    if (sortierung == 0) {
+                        cout << "Fahrzeuge werden absteigend sortiert." << endl;
                         insertionSortMietwagenAbsteigend(fahrzeuge);
-                    } else if (sortierung = 1) {
+                    } else if (sortierung == 1) {
+                        cout << "Fahrzeuge werden aufsteigend sortiert." << endl;
                         insertionSortMietwagenAufsteigend(fahrzeuge);
+                    } else if (sortierung == 2) {
+                        cout << "Fahrzeuge werden in der Reihenfolge angezeigt, wie sie hinzugefügt wurden." << endl;
                     } else {
                         cout << "Ungültige Eingabe." << endl;
                         break;
                     }
-
+                   
                     cout << "Alle Fahrzeuge:" << endl;
                     cout << "*****************" << endl;
                     for (Mietwagen w : fahrzeuge) {
