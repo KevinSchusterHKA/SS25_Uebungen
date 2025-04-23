@@ -51,7 +51,7 @@ void Autovermietung::dialog() {
         std::cout << "5: Fahrzeug hinzufuegen\n";
         std::cout << "6: Alle Fahrzeuge ausgeben\n";
         std::cout << "0: Programm beenden\n";
-        std::cout << "Bitte waehlen Sie eine Option: ";
+        std::cout << "Bitte waehlen Sie eine Option:\n";
         std::cin >> auswahl;
 
         switch (auswahl) {
@@ -61,7 +61,7 @@ void Autovermietung::dialog() {
             std::cin >> Buchungsnummer;
             if (this->Fahrzeuge[AutoAuswahl]->nummerPruefen(Buchungsnummer))
             {
-                std::cout << "Die Buchungnummer " << Buchungsnummer << " gibt es schon.";
+                std::cout << "Die Buchungnummer " << Buchungsnummer << " gibt es schon." << std::endl;
                 continue;
             }
 
@@ -85,7 +85,7 @@ void Autovermietung::dialog() {
             break;
         case FahrtAnzeigen:
             AutoAuswahl = this->mietwagenSuchen();
-            std::cout << "Welche Fahrt willst du sehen?";
+            std::cout << "Welche Fahrt willst du sehen?" << std::endl;
             std::cin >> temp;
             this->Fahrzeuge[AutoAuswahl]->fahrtAnzeigen(temp);
             break;
@@ -104,11 +104,11 @@ void Autovermietung::dialog() {
             AutoAuswahl = this->mietwagenSuchen();
             if (this->Fahrzeuge[AutoAuswahl]->fahrtLoeschen())
             {
-                std::cout << "Die Fahrt wurde geloescht.";
+                std::cout << "Die Fahrt wurde geloescht." << std::endl;
             }
             else
             {
-                std::cout << "Die Fahrt gibt es nicht.";
+                std::cout << "Die Fahrt gibt es nicht." << std::endl;
             }
             break;
         case FahrzeugHinzufuegen:
@@ -125,12 +125,13 @@ void Autovermietung::dialog() {
                 std::cout << "Sollen die Fahrzeuge und Fahrten in alphabetischer Reihenfolge aufwaerts (0) oder abwaerts (1) angezeigt werden." << std::endl;
                 std::cin >> Sortierrichtung;
                 TempWagen = this->Fahrzeuge;
-                for (int i = 1, j = i - 1; i < TempWagen.size(); ++i)
+                for (int i = 1; i < TempWagen.size(); ++i)
                 {
                     Mietwagen* Temp = TempWagen[i];
+                    int j = i - 1;
 
-                    while (j >= 0 && ((Sortierrichtung == 0) && ((TempWagen[j]->getMarke().at(0)) > (Temp->getMarke().at(0))) ||
-                        ((Sortierrichtung == 1) && !((TempWagen[j]->getMarke().at(0)) < (Temp->getMarke().at(0))))))
+                    while (j >= 0 &&    ((Sortierrichtung == 0) && ((TempWagen[j]->getMarke().at(0)) > (Temp->getMarke().at(0))) ||
+                                        ((Sortierrichtung == 1) && ((TempWagen[j]->getMarke().at(0)) < (Temp->getMarke().at(0))))))
                     {
                         TempWagen[j + 1] = TempWagen[j];
                         j--;

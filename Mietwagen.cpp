@@ -94,12 +94,12 @@ void Mietwagen::fahrzeugAnzeigen() {
 
 void Mietwagen::insertionsortFahrten(int Sortierrichtung) {	
 	std::vector<Fahrt> TempFahrtenbuch = this->fahrtenbuch;
-	for (int i=1,j = i - 1;i< TempFahrtenbuch.size();++i)
+	for (int i=1;i< TempFahrtenbuch.size();++i)
 	{
 		Fahrt TempFahrt = TempFahrtenbuch[i];
-		
+		int j = i - 1;
 		while (j >= 0 &&	((Sortierrichtung == 0) && ((TempFahrtenbuch[j].getKunde().at(0)) > (TempFahrt.getKunde().at(0))) ||
-							((Sortierrichtung == 1) && !((TempFahrtenbuch[j].getKunde().at(0)) < (TempFahrt.getKunde().at(0))))))
+							((Sortierrichtung == 1) && ((TempFahrtenbuch[j].getKunde().at(0)) < (TempFahrt.getKunde().at(0))))))
 		{
 			TempFahrtenbuch[j + 1] = TempFahrtenbuch[j];
 			j--;
