@@ -4,7 +4,7 @@ Fahrt::Fahrt(int n, std::string k, int ab, int bis):nummer(n), kunde(k), abholda
 
 }
 void Fahrt::anzeigen() {
-	std::cout	<< "Kundennummer: " << this->nummer 
+	std::cout	<< "Buchungsnummer: " << this->nummer 
 				<< " ,Kunde: " << this->kunde 
 				<< " ,Abholdatum: " << this->abholdatum 
 				<< " ,Abgabedatum: " << this->abgabedatum << std::endl;
