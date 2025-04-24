@@ -1,0 +1,4 @@
+﻿  Autovermietung.cpp
+C:\Users\Hadeed\Downloads\alg_ubung\Autovermietung.cpp(55,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Hadeed\Downloads\alg_ubung\Autovermietung.cpp(73,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Autovermietung.vcxproj -> C:\Users\Hadeed\Downloads\alg_ubung\x64\Debug\Autovermietung.exe
