@@ -21,6 +21,7 @@ Mietwagen::Mietwagen(std::string m, std::string k, int s, Fahrt f) {
 }
 
 void Mietwagen::anmieten(Fahrt F) {
+
 	if (this->verfuegbarkeitPruefen(F))
 	{
 		this->fahrtenbuch.push_back(F);
@@ -68,15 +69,12 @@ bool Mietwagen::fahrtLoeschen() {
 	int nummer = 0;
 	std::cout << "Bitte gebe die Buchungsnummer zum loeschen ein." << std::endl;
 	std::cin >> nummer;
-	try
+	if (0<=nummer && nummer <this->fahrtenbuch.size() )
 	{
-		this->fahrtenbuch.erase(this->fahrtenbuch.begin() + nummer);		
+		this->fahrtenbuch.erase(this->fahrtenbuch.begin() + nummer);
 		return true;
 	}
-	catch (const std::exception&)
-	{
-		return false;
-	}
+	return false;
 }
 bool Mietwagen::verfuegbarkeitPruefen(Fahrt f) {
 	for (Fahrt varFahrt:this->fahrtenbuch)

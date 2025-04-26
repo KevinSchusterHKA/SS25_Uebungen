@@ -52,7 +52,21 @@ void Autovermietung::dialog() {
         std::cout << "6: Alle Fahrzeuge ausgeben\n";
         std::cout << "0: Programm beenden\n";
         std::cout << "Bitte waehlen Sie eine Option:\n";
-        std::cin >> auswahl;
+        while (true)
+        {
+            std::cin >> auswahl;
+            if (std::cin.fail())
+			{
+				std::cin.clear(); // Fehlerflag zurücksetzen
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Eingabepuffer leeren
+				std::cout << "Ungueltige Eingabe. Bitte geben Sie eine Zahl ein." << std::endl;
+			}
+			else
+			{
+				break; // Gültige Eingabe, Schleife verlassen
+			}
+
+        }
 
         switch (auswahl) {
         case FahrzeugMieten:
@@ -117,10 +131,6 @@ void Autovermietung::dialog() {
 
             break;
         case AlleFahrzeugeAusgeben:
-
-                //this->insertionsort();
-
-                
 
                 std::cout << "Sollen die Fahrzeuge und Fahrten in alphabetischer Reihenfolge aufwaerts (0) oder abwaerts (1) angezeigt werden." << std::endl;
                 std::cin >> Sortierrichtung;

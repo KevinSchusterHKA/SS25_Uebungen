@@ -16,6 +16,5 @@ public:
 	int getNummer();
 	int getAbholdatum();
 	int getAbgabedatum();
-
 };
 
