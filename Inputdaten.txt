@@ -1,0 +1,14 @@
+Kunden
+Stefan Effenberg
+Werner vonSiemens
+Steve Jobs
+
+Automarken
+Ferrari
+Opel
+Tesla
+
+Kennzeichen
+KA-GJ-1020
+KA-GJ-1021
+KA-GJ-1022
