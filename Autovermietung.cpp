@@ -2,11 +2,79 @@
 //
 
 #include <iostream>
+#include "Mietwagen.h"
+#include "Autovermietung.h"
 
-int main()
-{
-    std::cout << "Hello World!\n";
+
+Autovermietung::Autovermietung() {
+
 }
+
+void Autovermietung::dialog() {
+	Mietwagen *fahrzeug = new Mietwagen;
+
+	fahrzeuge.push_back(fahrzeug);
+	bool running = true;
+	while (running) {
+		std::cout << "1: Fahrzeug Mieten" << std::endl <<
+			"2: Fahrt anzeigen" << std::endl <<
+			"3: Alle Fahrten anzeigen" << std::endl <<
+			"0: Programm beenden" << std::endl;
+		int wahl;
+		std::cin >> wahl;
+
+		int nummer, abholdatum, abgabedatum;
+		std::string kunde;
+		
+		switch (wahl) {
+			case 1: {
+
+
+			std::cout << "Buchungsnummer: ";
+			std::cin >> nummer;
+			std::cout << std::endl;
+
+			std::cout << "Kunde (Nachname;Vorname): ";
+			std::cin >> kunde;
+			std::cout << std::endl;
+
+			std::cout << "Abholdatum: ";
+			std::cin >> abholdatum;
+			std::cout << std::endl;
+
+			std::cout << "Abgabedatum: ";
+			std::cin >> abgabedatum;
+			std::cout << std::endl;
+
+			Fahrt fahrt(nummer, kunde, abholdatum, abgabedatum);
+			fahrzeug->anmieten(fahrt);
+			break;
+		}
+
+			case 2:
+				std::cout << "Geben sie eine Buchungsnummer an: ";
+				std::cin >> nummer;
+				fahrzeug->fahrtAnzeigen(nummer);
+				break;
+
+			case 3:
+				fahrzeug->alleFahrtenAnzeigen();
+				break;
+
+			case 0:
+				running = false;
+				break;
+			default:
+
+				break;
+		}
+
+
+	}
+}
+
+
+
 
 
 //test

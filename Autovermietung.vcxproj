@@ -152,6 +152,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Autovermietung.cpp" />
+    <ClCompile Include="Fahrt.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mietwagen.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Autovermietung.h" />
+    <ClInclude Include="Fahrt.h" />
+    <ClInclude Include="Mietwagen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
