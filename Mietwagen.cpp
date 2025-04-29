@@ -59,6 +59,16 @@ bool Mietwagen::nummerPruefen(int nummer) {
 	return false;
 }
 
-bool Mietwagen::fahrtLoeschen() {
+bool Mietwagen::fahrtLoeschen(int nummer) {
+	bool exists = false;
+	for (int i = 0; i++; i < fahrtenbuch.size()) {
+		if (fahrtenbuch[i].getNummer() == nummer) {
+			exists = true;
+			fahrtenbuch.erase(fahrtenbuch.begin() + i);
+		}
+	}
 
+	if (!exists) {
+		std::cout << "Nummer existiert nicht";
+	}
 }

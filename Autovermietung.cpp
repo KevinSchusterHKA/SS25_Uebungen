@@ -28,6 +28,7 @@ void Autovermietung::dialog() {
 		std::cout << "1: Fahrzeug Mieten" << std::endl <<
 			"2: Fahrt anzeigen" << std::endl <<
 			"3: Alle Fahrten anzeigen" << std::endl <<
+			"4: Fahrt löschen" << std::endl <<
 			"0: Programm beenden" << std::endl;
 		int wahl;
 		std::cin >> wahl;
@@ -73,6 +74,12 @@ void Autovermietung::dialog() {
 
 			case 3:
 				fahrzeug->alleFahrtenAnzeigen();
+				break;
+
+			case 4:
+				std::cout << "Geben sie eine Buchungsnummer an: ";
+				std::cin >> nummer;
+				fahrzeug->fahrtLoeschen(nummer);
 				break;
 
 			case 0:

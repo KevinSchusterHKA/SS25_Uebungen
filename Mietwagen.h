@@ -14,5 +14,5 @@ public:
 	void fahrtAnzeigen(int nummer);
 	void alleFahrtenAnzeigen();
 	bool nummerPruefen(int nummer);
-	bool fahrtLoeschen();
+	bool fahrtLoeschen(int nummer);
 };
