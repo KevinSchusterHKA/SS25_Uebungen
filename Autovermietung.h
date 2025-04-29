@@ -9,7 +9,7 @@ private:
 public:
 	Autovermietung();
 	void dialog();
-
+	~Autovermietung();
 
 
 };

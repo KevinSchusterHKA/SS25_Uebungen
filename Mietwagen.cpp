@@ -34,7 +34,7 @@ void Mietwagen::fahrtAnzeigen(int nummer) {
 	}
 
 	if (!exists) {
-		std::cout << "Fahrt existiert nicht" << std::endl;
+		std::cout << "Fahrt existiert nicht!" << std::endl;
 	}
 }
 
@@ -45,4 +45,20 @@ void Mietwagen::alleFahrtenAnzeigen() {
 		std::cout << "____________________________" << std::endl;
 
 	}
+}
+
+bool Mietwagen::nummerPruefen(int nummer) {
+	
+	for (Fahrt f : fahrtenbuch) {
+		if (f.getNummer() == nummer) {
+
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool Mietwagen::fahrtLoeschen() {
+
 }

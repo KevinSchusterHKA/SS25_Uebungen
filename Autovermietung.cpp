@@ -10,6 +10,15 @@ Autovermietung::Autovermietung() {
 
 }
 
+
+Autovermietung::~Autovermietung() {
+	for (Mietwagen *m : fahrzeuge) {
+		delete m;
+	}
+	std::cout << "Vielen Dank!" << std::endl;
+
+}
+
 void Autovermietung::dialog() {
 	Mietwagen *fahrzeug = new Mietwagen;
 
@@ -33,6 +42,10 @@ void Autovermietung::dialog() {
 			std::cout << "Buchungsnummer: ";
 			std::cin >> nummer;
 			std::cout << std::endl;
+			if (fahrzeug->nummerPruefen(nummer)) {
+				std::cout << "Nummer existiert bereits!!!" << std::endl;
+				break;
+			}
 
 			std::cout << "Kunde (Nachname;Vorname): ";
 			std::cin >> kunde;
@@ -45,9 +58,10 @@ void Autovermietung::dialog() {
 			std::cout << "Abgabedatum: ";
 			std::cin >> abgabedatum;
 			std::cout << std::endl;
-
-			Fahrt fahrt(nummer, kunde, abholdatum, abgabedatum);
-			fahrzeug->anmieten(fahrt);
+			
+				Fahrt fahrt(nummer, kunde, abholdatum, abgabedatum);
+				fahrzeug->anmieten(fahrt);
+			
 			break;
 		}
 
