@@ -13,6 +13,7 @@ public:
 	void anmieten(Fahrt f);
 	void fahrtAnzeigen(int nummer);
 	void alleFahrtenAnzeigen();
+	void fahrzeugAnzeigen();
 	bool nummerPruefen(int nummer);
 	bool fahrtLoeschen(int nummer);
 };

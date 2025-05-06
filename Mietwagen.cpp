@@ -19,6 +19,18 @@ Mietwagen::Mietwagen() {
 }
 
 void Mietwagen::anmieten(Fahrt fahrt) {
+
+	for (Fahrt f : fahrtenbuch) {
+		if (!f.verfuegbarkeitPruefen(fahrt)) {
+			
+			std::cout << "Buchung wegen Ueberschneidung nicht erfolgt!";
+			return;
+		}
+	}
+	if (fahrt.getAbholdatum() > fahrt.getAbgabedatum()) {
+		std::cout << "Abgabedatum vor Abholdatum!!" << std::endl;
+		return;
+	}
 	fahrtenbuch.push_back(fahrt);
 	std::cout << "Es wurde erfolgreich eine fahrt angelegt" << std::endl;
 
@@ -61,8 +73,9 @@ bool Mietwagen::nummerPruefen(int nummer) {
 
 bool Mietwagen::fahrtLoeschen(int nummer) {
 	bool exists = false;
-	for (int i = 0; i++; i < fahrtenbuch.size()) {
+	for (int i = 0; i < fahrtenbuch.size(); i++) {
 		if (fahrtenbuch[i].getNummer() == nummer) {
+			
 			exists = true;
 			fahrtenbuch.erase(fahrtenbuch.begin() + i);
 		}
@@ -71,4 +84,10 @@ bool Mietwagen::fahrtLoeschen(int nummer) {
 	if (!exists) {
 		std::cout << "Nummer existiert nicht";
 	}
+	return exists;
+}
+
+void Mietwagen::fahrzeugAnzeigen() {
+	std::cout << "Marke: " << marke << " Kennzeichen: " << kennzeichen<<std::endl;
+
 }

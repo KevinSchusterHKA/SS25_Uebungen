@@ -29,6 +29,8 @@ void Autovermietung::dialog() {
 			"2: Fahrt anzeigen" << std::endl <<
 			"3: Alle Fahrten anzeigen" << std::endl <<
 			"4: Fahrt löschen" << std::endl <<
+			"5: Fahrzeug hinzufuegen" << std::endl <<
+			"6: Alle Fahrzeuge ausgeben" << std::endl <<
 			"0: Programm beenden" << std::endl;
 		int wahl;
 		std::cin >> wahl;
@@ -79,7 +81,22 @@ void Autovermietung::dialog() {
 			case 4:
 				std::cout << "Geben sie eine Buchungsnummer an: ";
 				std::cin >> nummer;
-				fahrzeug->fahrtLoeschen(nummer);
+				if (fahrzeug->fahrtLoeschen(nummer)) {
+					std::cout << "Fahrzeug wurde gelöscht"<<std::endl;
+				}
+				break;
+
+			case 5:
+				Mietwagen *m = new Mietwagen();
+				fahrzeuge.push_back(m);
+
+				break;
+
+			case 6:
+				for (Mietwagen* m : fahrzeuge) {
+					m->alleFahrtenAnzeigen();
+					m->fahrzeugAnzeigen();
+				}
 				break;
 
 			case 0:
