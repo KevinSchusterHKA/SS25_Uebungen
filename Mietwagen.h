@@ -7,6 +7,7 @@ private:
 	std::string marke, kennzeichen;
 	int sitze;
 	std::vector<Fahrt> fahrtenbuch;
+	std::vector<Fahrt> sortierteFahrten(bool dir);
 
 public:
 	Mietwagen();

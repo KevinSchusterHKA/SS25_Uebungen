@@ -51,7 +51,7 @@ void Mietwagen::fahrtAnzeigen(int nummer) {
 }
 
 void Mietwagen::alleFahrtenAnzeigen() {
-	for (Fahrt f : fahrtenbuch) {
+	for (Fahrt f : sortierteFahrten(true)) {
 		
 		f.anzeigen();
 		std::cout << "____________________________" << std::endl;
@@ -90,4 +90,36 @@ bool Mietwagen::fahrtLoeschen(int nummer) {
 void Mietwagen::fahrzeugAnzeigen() {
 	std::cout << "Marke: " << marke << " Kennzeichen: " << kennzeichen<<std::endl;
 
+}
+
+std::vector<Fahrt> Mietwagen::sortierteFahrten(bool dir) {
+	std::vector<Fahrt> tmp = fahrtenbuch;  // Kopie vom Original
+
+	if (dir) {
+		for (int i = 1; i < tmp.size(); ++i) {
+			Fahrt key = tmp[i];
+			int j = i - 1;
+
+			// Aufsteigend sortieren nach vollständigem Kundennamen
+			while (j >= 0 && tmp[j].getKunde() > key.getKunde()) {
+				tmp[j + 1] = tmp[j];
+				j--;
+			}
+			tmp[j + 1] = key;
+		}
+	}
+	else {
+		for (int i = 1; i < tmp.size(); ++i) {
+			Fahrt key = tmp[i];
+			int j = i - 1;
+
+			// Absteigend sortieren nach vollständigem Kundennamen
+			while (j >= 0 && tmp[j].getKunde() < key.getKunde()) {
+				tmp[j + 1] = tmp[j];
+				j--;
+			}
+			tmp[j + 1] = key;
+		}
+	}
+	return tmp;
 }

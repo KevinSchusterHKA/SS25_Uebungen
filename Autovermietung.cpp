@@ -35,12 +35,20 @@ void Autovermietung::dialog() {
 		int wahl;
 		std::cin >> wahl;
 
-		int nummer, abholdatum, abgabedatum;
+		int index,nummer, abholdatum, abgabedatum;
 		std::string kunde;
 		
 		switch (wahl) {
 			case 1: {
 
+				std::cout << "Welches Fahrzeug (indexNr)?" << std::endl;
+				std::cin >> index;
+				if (!mietwagenSuchen(index)) {
+					std::cout << "Mietwagen existiert nicht! "<<std::endl;
+					break;
+				}
+				fahrzeug = fahrzeuge[index];
+				fahrzeug->fahrzeugAnzeigen();
 
 			std::cout << "Buchungsnummer: ";
 			std::cin >> nummer;
@@ -69,16 +77,39 @@ void Autovermietung::dialog() {
 		}
 
 			case 2:
+
+				std::cout << "Welches Fahrzeug (indexNr)?" << std::endl;
+				std::cin >> index;
+				if (!mietwagenSuchen(index)) {
+					std::cout << "Mietwagen existiert nicht! " << std::endl;
+					break;
+				}
+				fahrzeug = fahrzeuge[index];
+
 				std::cout << "Geben sie eine Buchungsnummer an: ";
 				std::cin >> nummer;
 				fahrzeug->fahrtAnzeigen(nummer);
 				break;
 
 			case 3:
+				std::cout << "Welches Fahrzeug (indexNr)?" << std::endl;
+				std::cin >> index;
+				if (!mietwagenSuchen(index)) {
+					std::cout << "Mietwagen existiert nicht! " << std::endl;
+					break;
+				}
+				fahrzeug = fahrzeuge[index];
 				fahrzeug->alleFahrtenAnzeigen();
 				break;
 
 			case 4:
+				std::cout << "Welches Fahrzeug (indexNr)?" << std::endl;
+				std::cin >> index;
+				if (!mietwagenSuchen(index)) {
+					std::cout << "Mietwagen existiert nicht! " << std::endl;
+					break;
+				}
+				fahrzeug = fahrzeuge[index];
 				std::cout << "Geben sie eine Buchungsnummer an: ";
 				std::cin >> nummer;
 				if (fahrzeug->fahrtLoeschen(nummer)) {
@@ -86,12 +117,12 @@ void Autovermietung::dialog() {
 				}
 				break;
 
-			case 5:
-				Mietwagen *m = new Mietwagen();
+			case 5: {
+				Mietwagen* m = new Mietwagen();
 				fahrzeuge.push_back(m);
 
 				break;
-
+			}
 			case 6:
 				for (Mietwagen* m : fahrzeuge) {
 					m->alleFahrtenAnzeigen();
@@ -108,6 +139,16 @@ void Autovermietung::dialog() {
 		}
 
 
+	}
+}
+
+bool Autovermietung::mietwagenSuchen(int index) {
+	if (index >= 0 && index < fahrzeuge.size()) {
+		return true;
+	}
+	else {
+		
+		return false;
 	}
 }
 
