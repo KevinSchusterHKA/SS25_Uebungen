@@ -1,20 +1,79 @@
-// Autovermietung.cpp : Diese Datei enthält die Funktion "main". Hier beginnt und endet die Ausführung des Programms.
-//
-
+#include "Autovermietung.h"
 #include <iostream>
+using namespace std;
 
-int main()
-{
-    std::cout << "Hello World!\n";
+Autovermietung::Autovermietung() {}
+
+Autovermietung::~Autovermietung() {
+    for (auto f : fahrzeuge) {
+        delete f;
+    }
+    cout << "Vielen Dank.";
 }
 
-// Programm ausführen: STRG+F5 oder "Debuggen" > Menü "Ohne Debuggen starten"
-// Programm debuggen: F5 oder "Debuggen" > Menü "Debuggen starten"
+Mietwagen* Autovermietung::mietwagenSuchen() {
+    int index;
+    cout << "Index des Mietwagens: ";
+    cin >> index;
+    if (index < 0 || index >= fahrzeuge.size()) {
+        cout << "Fahrzeug nicht vorhanden.";
+        return nullptr;
+    }
+    return fahrzeuge[index];
+}
 
-// Tipps für den Einstieg: 
-//   1. Verwenden Sie das Projektmappen-Explorer-Fenster zum Hinzufügen/Verwalten von Dateien.
-//   2. Verwenden Sie das Team Explorer-Fenster zum Herstellen einer Verbindung mit der Quellcodeverwaltung.
-//   3. Verwenden Sie das Ausgabefenster, um die Buildausgabe und andere Nachrichten anzuzeigen.
-//   4. Verwenden Sie das Fenster "Fehlerliste", um Fehler anzuzeigen.
-//   5. Wechseln Sie zu "Projekt" > "Neues Element hinzufügen", um neue Codedateien zu erstellen, bzw. zu "Projekt" > "Vorhandenes Element hinzufügen", um dem Projekt vorhandene Codedateien hinzuzufügen.
-//   6. Um dieses Projekt später erneut zu öffnen, wechseln Sie zu "Datei" > "Öffnen" > "Projekt", und wählen Sie die SLN-Datei aus.
+void Autovermietung::dialog() {
+    fahrzeuge.push_back(new Mietwagen());
+
+    int wahl;
+    do {
+        cout << "\n1: Fahrzeug mieten\n2: Fahrt anzeigen\n3: Alle Fahrten anzeigen\n"
+            "4: Fahrt löschen\n5: Fahrzeug hinzufügen\n6: Alle Fahrzeuge ausgeben\n"
+            "7: Fahrten sortiert anzeigen\n"
+            "0: Programm beenden\n> ";
+        cin >> wahl;
+
+        switch (wahl) {
+        case 1: {
+            Mietwagen* mw = mietwagenSuchen();
+            if (mw) mw->anmieten();
+            break;
+        }
+        case 2: {
+            Mietwagen* mw = mietwagenSuchen();
+            if (mw) mw->fahrtenAnzeigen();
+            break;
+        }
+        case 3: {
+            for (auto mw : fahrzeuge) {
+                mw->fahrtenAnzeigen();
+            }
+            break;
+        }
+        case 4: {
+            Mietwagen* mw = mietwagenSuchen();
+            if (mw) mw->fahrtLoeschen();
+            break;
+        }
+        case 5:
+            fahrzeuge.push_back(new Mietwagen());
+            break;
+        case 6:
+            for (auto mw : fahrzeuge) {
+                mw->fahrzeugAnzeigen();
+                mw->fahrtenAnzeigen();
+            }
+            break;
+        case 7: {
+            Mietwagen* mw = mietwagenSuchen();
+            if (mw) mw->fahrtenSortierenUndAnzeigen();
+            break;
+        }
+        case 0:
+            break;
+        default:
+            cout << "Ungültige Eingabe.\n";
+        }
+
+    } while (wahl != 0);
+}
