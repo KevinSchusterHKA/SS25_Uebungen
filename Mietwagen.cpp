@@ -7,7 +7,7 @@ Mietwagen::Mietwagen() {
 	std::cout << "Geben sie das Kennzeichen an: ";
 	std::cin >> kennzeichen;
 	std::cout << std::endl;
-	std::cout << "Geben sie die Anzahler der Sitze an: ";
+	std::cout << "Geben sie die Anzahl der Sitze an: ";
 	std::cin >> sitze;
 	std::cout << std::endl;
 	
@@ -20,17 +20,19 @@ Mietwagen::Mietwagen() {
 
 void Mietwagen::anmieten(Fahrt fahrt) {
 
-	for (Fahrt f : fahrtenbuch) {
-		if (!f.verfuegbarkeitPruefen(fahrt)) {
-			
-			std::cout << "Buchung wegen Ueberschneidung nicht erfolgt!";
-			return;
-		}
-	}
 	if (fahrt.getAbholdatum() > fahrt.getAbgabedatum()) {
 		std::cout << "Abgabedatum vor Abholdatum!!" << std::endl;
 		return;
 	}
+
+	for (Fahrt f : fahrtenbuch) {
+		if (!verfuegbarkeitPruefen(fahrt)) {
+			
+			std::cout << "Buchung wegen Ueberschneidung nicht erfolgt!"<<std::endl;
+			return;
+		}
+	}
+	
 	fahrtenbuch.push_back(fahrt);
 	std::cout << "Es wurde erfolgreich eine fahrt angelegt" << std::endl;
 
@@ -50,8 +52,10 @@ void Mietwagen::fahrtAnzeigen(int nummer) {
 	}
 }
 
-void Mietwagen::alleFahrtenAnzeigen() {
-	for (Fahrt f : sortierteFahrten(true)) {
+void Mietwagen::alleFahrtenAnzeigen(bool dir) {
+	
+	
+	for (Fahrt f : sortierteFahrten(dir)) {
 		
 		f.anzeigen();
 		std::cout << "____________________________" << std::endl;
@@ -82,7 +86,7 @@ bool Mietwagen::fahrtLoeschen(int nummer) {
 	}
 
 	if (!exists) {
-		std::cout << "Nummer existiert nicht";
+		std::cout << "Nummer existiert nicht"<<std::endl;
 	}
 	return exists;
 }
@@ -90,6 +94,35 @@ bool Mietwagen::fahrtLoeschen(int nummer) {
 void Mietwagen::fahrzeugAnzeigen() {
 	std::cout << "Marke: " << marke << " Kennzeichen: " << kennzeichen<<std::endl;
 
+}
+
+std::string Mietwagen::getKennzeichen() {
+	return kennzeichen;
+}
+
+bool Mietwagen::verfuegbarkeitPruefen(Fahrt f) {
+	for (Fahrt bestehend : fahrtenbuch) {
+		
+		
+		
+		
+
+		// neue Fahrt  innerhalb bestehender Fahrt
+		if (f.getAbholdatum() >= bestehend.getAbholdatum() && f.getAbholdatum() < bestehend.getAbgabedatum()) {
+			return false;
+		}
+
+		// neues Fahrtende  innerhalb bestehender Fahrt
+		if (f.getAbgabedatum() > bestehend.getAbholdatum() && f.getAbgabedatum() <= bestehend.getAbgabedatum()) {
+			return false;
+		}
+
+		// neue Fahrt umschließt die bestehende komplett
+		if (f.getAbholdatum() <= bestehend.getAbholdatum() && f.getAbgabedatum() >= bestehend.getAbgabedatum()) {
+			return false;
+		}
+	}
+	return true;
 }
 
 std::vector<Fahrt> Mietwagen::sortierteFahrten(bool dir) {

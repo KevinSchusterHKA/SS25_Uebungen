@@ -36,6 +36,7 @@ void Autovermietung::dialog() {
 		std::cin >> wahl;
 
 		int index,nummer, abholdatum, abgabedatum;
+		bool dir;
 		std::string kunde;
 		
 		switch (wahl) {
@@ -98,10 +99,15 @@ void Autovermietung::dialog() {
 					std::cout << "Mietwagen existiert nicht! " << std::endl;
 					break;
 				}
-				fahrzeug = fahrzeuge[index];
-				fahrzeug->alleFahrtenAnzeigen();
-				break;
 
+				std::cout << "Alphabetische Ausgabe (0: absteigend, 1: aufsteigend):" << std::endl;
+				std::cin >> dir;
+				
+
+				fahrzeug = fahrzeuge[index];
+				fahrzeug->alleFahrtenAnzeigen(dir);
+				break;
+				
 			case 4:
 				std::cout << "Welches Fahrzeug (indexNr)?" << std::endl;
 				std::cin >> index;
@@ -124,9 +130,14 @@ void Autovermietung::dialog() {
 				break;
 			}
 			case 6:
-				for (Mietwagen* m : fahrzeuge) {
-					m->alleFahrtenAnzeigen();
+
+				std::cout << "Alphabetische Ausgabe (0: absteigend, 1: aufsteigend):" << std::endl;
+				std::cin >> dir;
+				for (Mietwagen* m : sortierteFahrzeuge(dir)) {
+					
 					m->fahrzeugAnzeigen();
+					m->alleFahrtenAnzeigen(dir);
+					
 				}
 				break;
 
@@ -154,7 +165,37 @@ bool Autovermietung::mietwagenSuchen(int index) {
 
 
 
+std::vector<Mietwagen*> Autovermietung::sortierteFahrzeuge(bool dir) {
+	std::vector<Mietwagen*> tmp = fahrzeuge;  // Kopie vom Original
 
+	if (dir) {
+		for (int i = 1; i < tmp.size(); ++i) {
+			Mietwagen* key = tmp[i];
+			int j = i - 1;
+
+			// Aufsteigend sortieren nach vollständigem Kundennamen
+			while (j >= 0 && tmp[j]->getKennzeichen() > key->getKennzeichen()) {
+				tmp[j + 1] = tmp[j];
+				j--;
+			}
+			tmp[j + 1] = key;
+		}
+	}
+	else {
+		for (int i = 1; i < tmp.size(); ++i) {
+			Mietwagen* key = tmp[i];
+			int j = i - 1;
+
+			// Absteigend sortieren nach vollständigem Kundennamen
+			while (j >= 0 && tmp[j]->getKennzeichen() < key->getKennzeichen()) {
+				tmp[j + 1] = tmp[j];
+				j--;
+			}
+			tmp[j + 1] = key;
+		}
+	}
+	return tmp;
+}
 
 //test
 // Dies ist ein weiterer Test

@@ -6,7 +6,7 @@
 class Autovermietung {
 private:
 	std::vector<Mietwagen*> fahrzeuge;
-	
+	std::vector<Mietwagen*> sortierteFahrzeuge(bool dir);
 public:
 	Autovermietung();
 	void dialog();

@@ -26,19 +26,3 @@ int Fahrt::getAbholdatum() {
 	return abholdatum;
 }
 
-bool Fahrt::verfuegbarkeitPruefen(Fahrt f) {
-	
-	if (f.getAbgabedatum() > abholdatum && f.getAbgabedatum() < abgabedatum) {
-		return false;
-	}
-
-	if (f.getAbholdatum() > abholdatum && f.getAbholdatum() < abgabedatum) {
-		return false;
-	}
-
-	if (abholdatum > f.getAbholdatum() && abholdatum < f.getAbgabedatum()) {
-		return false;
-	}
-
-	return true;
-}

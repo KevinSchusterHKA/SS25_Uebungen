@@ -13,5 +13,5 @@ public:
 	int getNummer();
 	int getAbholdatum();
 	int getAbgabedatum();
-	bool verfuegbarkeitPruefen(Fahrt f);
+	
 };
