@@ -1,0 +1,14 @@
+Kunden
+Rembrandt vanRijn
+Edvard Munch
+Andy Warhol
+
+Automarken
+Tesla
+Volvo
+Jaguar
+
+Kennzeichen
+KA-GZ-1011
+KA-GZ-1012
+KA-GZ-1013
